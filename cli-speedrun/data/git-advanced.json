@@ -1,0 +1,19 @@
+{
+  "category": "git-advanced",
+  "display_name": "Git Advanced",
+  "difficulty": "hard",
+  "commands": [
+    { "text": "git rebase -i HEAD~3", "difficulty": 3, "description": "Interactive rebase last 3" },
+    { "text": "git cherry-pick abc1234", "difficulty": 2, "description": "Cherry-pick a commit" },
+    { "text": "git bisect start", "difficulty": 2, "description": "Start binary search for bug" },
+    { "text": "git reflog expire --all", "difficulty": 3, "description": "Expire all reflog entries" },
+    { "text": "git worktree add ../fix main", "difficulty": 3, "description": "Add linked worktree" },
+    { "text": "git subtree push --prefix dist origin gh-pages", "difficulty": 3, "description": "Push subtree to branch" },
+    { "text": "git stash push -m \"wip\"", "difficulty": 2, "description": "Stash with message" },
+    { "text": "git rebase --onto main feat~3 feat", "difficulty": 3, "description": "Rebase onto specific base" },
+    { "text": "git log --graph --all --decorate", "difficulty": 2, "description": "Visual branch graph" },
+    { "text": "git blame -L 10,20 src/main.rs", "difficulty": 2, "description": "Blame specific lines" },
+    { "text": "git clean -fdx", "difficulty": 2, "description": "Remove untracked files" },
+    { "text": "git remote prune origin", "difficulty": 2, "description": "Prune stale remote refs" }
+  ]
+}

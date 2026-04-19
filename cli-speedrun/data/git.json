@@ -1,0 +1,19 @@
+{
+  "category": "git",
+  "display_name": "Git Basics",
+  "difficulty": "easy",
+  "commands": [
+    { "text": "git add .", "difficulty": 1, "description": "Stage all changes" },
+    { "text": "git commit -m \"init\"", "difficulty": 1, "description": "Commit with message" },
+    { "text": "git push origin main", "difficulty": 1, "description": "Push to remote main" },
+    { "text": "git pull --rebase", "difficulty": 2, "description": "Pull with rebase" },
+    { "text": "git stash pop", "difficulty": 1, "description": "Apply latest stash" },
+    { "text": "git branch -d feature", "difficulty": 1, "description": "Delete local branch" },
+    { "text": "git merge --no-ff dev", "difficulty": 2, "description": "Merge with merge commit" },
+    { "text": "git checkout -b hotfix", "difficulty": 1, "description": "Create and switch branch" },
+    { "text": "git log --oneline -10", "difficulty": 2, "description": "Show last 10 commits" },
+    { "text": "git diff --staged", "difficulty": 1, "description": "Diff staged changes" },
+    { "text": "git status -s", "difficulty": 1, "description": "Short status output" },
+    { "text": "git reset HEAD~1", "difficulty": 2, "description": "Undo last commit soft" }
+  ]
+}

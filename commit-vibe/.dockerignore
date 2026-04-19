@@ -1,0 +1,23 @@
+# Ignore .fetch files
+.fetch
+
+# Ignore packages
+/deps
+/_build
+
+# Ignore assets that are produced by build tools
+/priv/static/assets
+
+# Ignore digested assets cache
+/priv/static/cache_manifest.json
+
+# Ignore crash dumps
+erl_crash.dump
+
+# Ignore node modules
+/assets/node_modules
+
+# Ignore test and development artifacts
+.elixir_ls
+.git
+test

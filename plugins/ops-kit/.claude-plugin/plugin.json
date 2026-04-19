@@ -1,0 +1,7 @@
+{
+  "name": "ops-kit",
+  "version": "1.0.0",
+  "description": "Release pipeline skill, CI auto-fix watcher, operational CLAUDE.md rules, and push hooks",
+  "author": { "name": "justn-hyeok" },
+  "keywords": ["release", "ci", "ops", "hooks", "pipeline", "publish"]
+}

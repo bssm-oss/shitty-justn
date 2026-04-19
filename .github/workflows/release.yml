@@ -1,0 +1,78 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - target: aarch64-macos
+            artifact: port-who-macos-arm64
+          - target: x86_64-macos
+            artifact: port-who-macos-x64
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mlugg/setup-zig@v2
+        with:
+          version: 0.15.2
+      - name: Build
+        run: zig build -Doptimize=ReleaseFast -Dtarget=${{ matrix.target }}
+      - name: Rename binary
+        run: cp zig-out/bin/port-who ${{ matrix.artifact }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.artifact }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*
+          generate_release_notes: true
+
+  update-homebrew:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: bssm-oss/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: homebrew-tap
+
+      - name: Compute sha256 and update formula
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          VERSION=${TAG#v}
+          gh release download $TAG --repo bssm-oss/port-who --dir /tmp/assets
+
+          SHA_MACOS_ARM64=$(shasum -a 256 /tmp/assets/port-who-macos-arm64 | awk '{print $1}')
+          SHA_MACOS_X64=$(shasum -a 256 /tmp/assets/port-who-macos-x64 | awk '{print $1}')
+
+          cd homebrew-tap
+          python3 scripts/update-formula.py port-who.rb $VERSION \
+            port-who-macos-arm64=$SHA_MACOS_ARM64 \
+            port-who-macos-x64=$SHA_MACOS_X64
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add port-who.rb
+          git diff --staged --quiet || git commit -m "chore: bump port-who to v$VERSION"
+          git push

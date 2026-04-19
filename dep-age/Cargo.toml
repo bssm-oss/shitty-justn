@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 description = "Visualize how old your project dependencies are"
 license = "MIT"
-repository = "https://github.com/justn-hyeok/dep-age"
-homepage = "https://github.com/justn-hyeok/dep-age"
+repository = "https://github.com/bssm-oss/shitty-justn"
+homepage = "https://github.com/bssm-oss/shitty-justn/tree/main/dep-age"
 
 [dependencies]
 clap = { version = "4", features = ["derive"] }

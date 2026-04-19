@@ -1,0 +1,100 @@
+name: Release git-roast
+
+on:
+  push:
+    tags: ['git-roast-v*']
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            artifact: git-roast-linux-x64
+            os: ubuntu-latest
+          - target: aarch64-unknown-linux-gnu
+            artifact: git-roast-linux-arm64
+            os: ubuntu-latest
+          - target: x86_64-apple-darwin
+            artifact: git-roast-macos-x64
+            os: macos-latest
+          - target: aarch64-apple-darwin
+            artifact: git-roast-macos-arm64
+            os: macos-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Build
+        working-directory: git-roast
+        run: deno compile --allow-run --allow-net --allow-read --allow-env --target ${{ matrix.target }} --output ../${{ matrix.artifact }} main.ts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.artifact }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*
+          generate_release_notes: true
+
+  update-homebrew:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: bssm-oss/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: homebrew-tap
+
+      - name: Compute sha256 and update formula
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release download $TAG --repo bssm-oss/shitty-justn --dir /tmp/assets
+
+          SHA_MACOS_ARM64=$(shasum -a 256 /tmp/assets/git-roast-macos-arm64 | awk '{print $1}')
+          SHA_MACOS_X64=$(shasum -a 256 /tmp/assets/git-roast-macos-x64 | awk '{print $1}')
+          SHA_LINUX_ARM64=$(shasum -a 256 /tmp/assets/git-roast-linux-arm64 | awk '{print $1}')
+          SHA_LINUX_X64=$(shasum -a 256 /tmp/assets/git-roast-linux-x64 | awk '{print $1}')
+
+          cd homebrew-tap
+          python3 scripts/update-formula.py git-roast.rb $TAG \
+            git-roast-macos-arm64=$SHA_MACOS_ARM64 \
+            git-roast-macos-x64=$SHA_MACOS_X64 \
+            git-roast-linux-arm64=$SHA_LINUX_ARM64 \
+            git-roast-linux-x64=$SHA_LINUX_X64
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add git-roast.rb
+          git diff --staged --quiet || git commit -m "chore: bump git-roast to $TAG"
+          git push
+
+  publish-jsr:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Publish to JSR
+        working-directory: git-roast
+        run: deno publish

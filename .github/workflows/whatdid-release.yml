@@ -1,0 +1,95 @@
+name: Release whatdid
+
+on:
+  push:
+    tags: ['whatdid-v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - goos: darwin
+            goarch: arm64
+            artifact: whatdid-darwin-arm64
+          - goos: darwin
+            goarch: amd64
+            artifact: whatdid-darwin-amd64
+          - goos: linux
+            goarch: arm64
+            artifact: whatdid-linux-arm64
+          - goos: linux
+            goarch: amd64
+            artifact: whatdid-linux-amd64
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26'
+
+      - name: Build
+        working-directory: whatdid
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: 0
+        run: go build -ldflags="-s -w" -o ../${{ matrix.artifact }} .
+
+      - name: Package
+        run: tar czf ${{ matrix.artifact }}.tar.gz ${{ matrix.artifact }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.artifact }}.tar.gz
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: whatdid-*.tar.gz
+          generate_release_notes: true
+
+  update-homebrew:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: bssm-oss/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: homebrew-tap
+
+      - name: Compute sha256 and update formula
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release download $TAG --repo bssm-oss/shitty-justn --dir /tmp/assets
+
+          SHA_DARWIN_ARM64=$(shasum -a 256 /tmp/assets/whatdid-darwin-arm64.tar.gz | awk '{print $1}')
+          SHA_DARWIN_AMD64=$(shasum -a 256 /tmp/assets/whatdid-darwin-amd64.tar.gz | awk '{print $1}')
+          SHA_LINUX_ARM64=$(shasum -a 256 /tmp/assets/whatdid-linux-arm64.tar.gz | awk '{print $1}')
+          SHA_LINUX_AMD64=$(shasum -a 256 /tmp/assets/whatdid-linux-amd64.tar.gz | awk '{print $1}')
+
+          cd homebrew-tap
+          python3 scripts/update-formula.py whatdid.rb $TAG \
+            whatdid-darwin-arm64.tar.gz=$SHA_DARWIN_ARM64 \
+            whatdid-darwin-amd64.tar.gz=$SHA_DARWIN_AMD64 \
+            whatdid-linux-arm64.tar.gz=$SHA_LINUX_ARM64 \
+            whatdid-linux-amd64.tar.gz=$SHA_LINUX_AMD64
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add whatdid.rb
+          git diff --staged --quiet || git commit -m "chore: bump whatdid to $TAG"
+          git push

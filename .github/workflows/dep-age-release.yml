@@ -1,0 +1,99 @@
+name: Release dep-age
+
+on:
+  push:
+    tags: ['dep-age-v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: aarch64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: x86_64-apple-darwin
+            os: macos-latest
+          - target: aarch64-apple-darwin
+            os: macos-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: dep-age
+
+      - name: Install cross-compilation tools
+        if: matrix.target == 'aarch64-unknown-linux-gnu'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu
+          echo "CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=aarch64-linux-gnu-gcc" >> $GITHUB_ENV
+
+      - name: Build
+        working-directory: dep-age
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Package
+        run: |
+          cd dep-age/target/${{ matrix.target }}/release
+          tar czf ../../../../dep-age-${{ matrix.target }}.tar.gz dep-age
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dep-age-${{ matrix.target }}
+          path: dep-age-${{ matrix.target }}.tar.gz
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dep-age-*
+          generate_release_notes: true
+
+  update-homebrew:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: bssm-oss/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: homebrew-tap
+
+      - name: Compute sha256 and update formula
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release download $TAG --repo bssm-oss/shitty-justn --dir /tmp/assets
+
+          SHA_X86_MAC=$(shasum -a 256 /tmp/assets/dep-age-x86_64-apple-darwin.tar.gz | awk '{print $1}')
+          SHA_ARM_MAC=$(shasum -a 256 /tmp/assets/dep-age-aarch64-apple-darwin.tar.gz | awk '{print $1}')
+          SHA_X86_LINUX=$(shasum -a 256 /tmp/assets/dep-age-x86_64-unknown-linux-gnu.tar.gz | awk '{print $1}')
+          SHA_ARM_LINUX=$(shasum -a 256 /tmp/assets/dep-age-aarch64-unknown-linux-gnu.tar.gz | awk '{print $1}')
+
+          cd homebrew-tap
+          python3 scripts/update-formula.py dep-age.rb $TAG \
+            dep-age-x86_64-apple-darwin.tar.gz=$SHA_X86_MAC \
+            dep-age-aarch64-apple-darwin.tar.gz=$SHA_ARM_MAC \
+            dep-age-x86_64-unknown-linux-gnu.tar.gz=$SHA_X86_LINUX \
+            dep-age-aarch64-unknown-linux-gnu.tar.gz=$SHA_ARM_LINUX
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dep-age.rb
+          git diff --staged --quiet || git commit -m "chore: bump dep-age to $TAG"
+          git push

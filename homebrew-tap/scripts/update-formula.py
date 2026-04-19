@@ -2,10 +2,10 @@
 """Update a Homebrew formula's version, URLs, and sha256 hashes.
 
 Usage:
-    python3 update-formula.py <formula.rb> <version> [asset=sha256 ...]
+    python3 update-formula.py <formula.rb> <tag> [asset=sha256 ...]
 
 Example:
-    python3 update-formula.py dep-age.rb 0.2.0 \
+    python3 update-formula.py dep-age.rb dep-age-v0.2.0 \
         dep-age-x86_64-apple-darwin.tar.gz=abc123 \
         dep-age-aarch64-apple-darwin.tar.gz=def456
 """
@@ -13,17 +13,20 @@ import re
 import sys
 
 
-def update_formula(path: str, version: str, sha_map: dict[str, str]) -> None:
+def update_formula(path: str, tag: str, sha_map: dict[str, str]) -> None:
+    # Extract version from tag (e.g. "cli-speedrun-v0.1.2" -> "0.1.2")
+    version = tag.split("-v")[-1]
+
     with open(path) as f:
         content = f.read()
 
     # Update version field
     content = re.sub(r'version "\S+"', f'version "{version}"', content)
 
-    # Update version in release download URLs
+    # Update tag in release download URLs (matches any tag format)
     content = re.sub(
-        r'(releases/download/v)[\d.]+(/)',
-        lambda m: f'{m.group(1)}{version}{m.group(2)}',
+        r'(releases/download/)[^/]+(/)',
+        lambda m: f'{m.group(1)}{tag}{m.group(2)}',
         content,
     )
 
@@ -43,7 +46,7 @@ def update_formula(path: str, version: str, sha_map: dict[str, str]) -> None:
     with open(path, "w") as f:
         f.write(content)
 
-    print(f"Updated {path} to v{version}")
+    print(f"Updated {path} to {tag}")
 
 
 if __name__ == "__main__":
@@ -52,7 +55,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     formula_path = sys.argv[1]
-    new_version = sys.argv[2]
+    tag = sys.argv[2]
     sha_pairs = sys.argv[3:]
 
     sha_map = {}
@@ -60,4 +63,4 @@ if __name__ == "__main__":
         asset, sha = pair.split("=", 1)
         sha_map[asset] = sha
 
-    update_formula(formula_path, new_version, sha_map)
+    update_formula(formula_path, tag, sha_map)

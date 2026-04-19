@@ -1,0 +1,16 @@
+# Deno
+.deno/
+deno.lock
+cov_profile/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Compiled binary
+git-roast

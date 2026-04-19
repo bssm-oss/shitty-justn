@@ -1,0 +1,363 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA11111111111111111110 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22222222222222222210 /* AppDelegate.swift */; };
+		AA11111111111111111111 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22222222222222222211 /* main.swift */; };
+		AA11111111111111111112 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22222222222222222212 /* StatusBarController.swift */; };
+		AA11111111111111111113 /* DDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22222222222222222213 /* DDay.swift */; };
+		AA11111111111111111114 /* DDayStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22222222222222222214 /* DDayStore.swift */; };
+		AA11111111111111111115 /* AddDDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22222222222222222215 /* AddDDayView.swift */; };
+		AA11111111111111111116 /* EditDDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA22222222222222222216 /* EditDDayView.swift */; };
+		AA11111111111111111117 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA22222222222222222217 /* Assets.xcassets */; };
+		AA11111111111111111118 /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2222222222222222221A /* EmojiTextField.swift */; };
+		AA11111111111111111119 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2222222222222222221B /* SettingsView.swift */; };
+		AA1111111111111111111A /* SelectDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2222222222222222221C /* SelectDeleteView.swift */; };
+		AA1111111111111111111B /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2222222222222222221D /* L10n.swift */; };
+		AA1111111111111111111C /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2222222222222222221E /* LanguageManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA22222222222222222200 /* daybar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daybar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA22222222222222222210 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AA22222222222222222211 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AA22222222222222222212 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		AA22222222222222222213 /* DDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDay.swift; sourceTree = "<group>"; };
+		AA22222222222222222214 /* DDayStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDayStore.swift; sourceTree = "<group>"; };
+		AA22222222222222222215 /* AddDDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDDayView.swift; sourceTree = "<group>"; };
+		AA22222222222222222216 /* EditDDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDDayView.swift; sourceTree = "<group>"; };
+		AA22222222222222222217 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA22222222222222222218 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA22222222222222222219 /* daybar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = daybar.entitlements; sourceTree = "<group>"; };
+		AA2222222222222222221A /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
+		AA2222222222222222221B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA2222222222222222221C /* SelectDeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDeleteView.swift; sourceTree = "<group>"; };
+		AA2222222222222222221D /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		AA2222222222222222221E /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA33333333333333333300 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA44444444444444444400 = {
+			isa = PBXGroup;
+			children = (
+				AA44444444444444444410 /* daybar */,
+				AA44444444444444444401 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA44444444444444444401 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA22222222222222222200 /* daybar.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA44444444444444444410 /* daybar */ = {
+			isa = PBXGroup;
+			children = (
+				AA22222222222222222210 /* AppDelegate.swift */,
+				AA22222222222222222211 /* main.swift */,
+				AA22222222222222222212 /* StatusBarController.swift */,
+				AA22222222222222222213 /* DDay.swift */,
+				AA22222222222222222214 /* DDayStore.swift */,
+				AA22222222222222222215 /* AddDDayView.swift */,
+				AA22222222222222222216 /* EditDDayView.swift */,
+				AA22222222222222222217 /* Assets.xcassets */,
+				AA22222222222222222218 /* Info.plist */,
+				AA22222222222222222219 /* daybar.entitlements */,
+				AA2222222222222222221A /* EmojiTextField.swift */,
+				AA2222222222222222221B /* SettingsView.swift */,
+				AA2222222222222222221C /* SelectDeleteView.swift */,
+				AA2222222222222222221D /* L10n.swift */,
+				AA2222222222222222221E /* LanguageManager.swift */,
+			);
+			path = daybar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA55555555555555555500 /* daybar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA66666666666666666601 /* Build configuration list for PBXNativeTarget "daybar" */;
+			buildPhases = (
+				AA33333333333333333300 /* Frameworks */,
+				AA77777777777777777700 /* Sources */,
+				AA88888888888888888800 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = daybar;
+			productName = daybar;
+			productReference = AA22222222222222222200 /* daybar.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA99999999999999999900 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AA55555555555555555500 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AA66666666666666666600 /* Build configuration list for PBXProject "daybar" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA44444444444444444400;
+			productRefGroup = AA44444444444444444401 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA55555555555555555500 /* daybar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA88888888888888888800 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA11111111111111111117 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA77777777777777777700 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA11111111111111111110 /* AppDelegate.swift in Sources */,
+				AA11111111111111111111 /* main.swift in Sources */,
+				AA11111111111111111112 /* StatusBarController.swift in Sources */,
+				AA11111111111111111113 /* DDay.swift in Sources */,
+				AA11111111111111111114 /* DDayStore.swift in Sources */,
+				AA11111111111111111115 /* AddDDayView.swift in Sources */,
+				AA11111111111111111116 /* EditDDayView.swift in Sources */,
+				AA11111111111111111118 /* EmojiTextField.swift in Sources */,
+				AA11111111111111111119 /* SettingsView.swift in Sources */,
+				AA1111111111111111111A /* SelectDeleteView.swift in Sources */,
+				AA1111111111111111111B /* L10n.swift in Sources */,
+				AA1111111111111111111C /* LanguageManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA66666666666666666610 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA66666666666666666611 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		AA66666666666666666612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = daybar/daybar.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = daybar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daybar.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AA66666666666666666613 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = daybar/daybar.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = daybar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daybar.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA66666666666666666600 /* Build configuration list for PBXProject "daybar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA66666666666666666610 /* Debug */,
+				AA66666666666666666611 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA66666666666666666601 /* Build configuration list for PBXNativeTarget "daybar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA66666666666666666612 /* Debug */,
+				AA66666666666666666613 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = AA99999999999999999900 /* Project object */;
+}

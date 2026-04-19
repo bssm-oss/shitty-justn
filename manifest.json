@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "for-real",
+  "version": "0.1.0",
+  "description": "GitHub에서 레포/조직 실수로 삭제 방지. 'for real?' 확인 한 번 더.",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["https://github.com/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "for-real"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start"
+    }
+  ]
+}

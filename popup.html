@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <svg class="logo" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L3 6v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V6l-9-4z" stroke="url(#g)" stroke-width="2" stroke-linejoin="round" fill="url(#gf)"/>
+        <path d="M9 12l2 2 4-4" stroke="#e6edf3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="24" y2="24">
+            <stop offset="0" stop-color="#f85149"/>
+            <stop offset="1" stop-color="#d29922"/>
+          </linearGradient>
+          <linearGradient id="gf" x1="0" y1="0" x2="24" y2="24">
+            <stop offset="0" stop-color="#f8514922"/>
+            <stop offset="1" stop-color="#d2992222"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="title">
+        <h1>for-real</h1>
+        <p class="sub">Prevent accidental deletion</p>
+      </div>
+    </div>
+  </header>
+
+  <section id="current-section" class="section current hidden">
+    <div class="current-label">
+      <span class="pulse"></span>
+      Current page
+    </div>
+    <div class="current-name" id="current-name"></div>
+    <button id="add-current" class="btn primary">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"/></svg>
+      Add to protected list
+    </button>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Protected</h2>
+      <span id="count" class="count">0</span>
+    </div>
+    <ul id="list"></ul>
+    <div class="add-manual">
+      <input type="text" id="manual-input" placeholder="owner/repo or org">
+      <button id="add-manual" class="btn">Add</button>
+    </div>
+  </section>
+
+  <section class="section settings">
+    <label class="toggle">
+      <input type="checkbox" id="auto-detect">
+      <span class="toggle-slider"></span>
+      <span class="toggle-label">Auto-detect current page</span>
+    </label>
+  </section>
+
+  <footer>
+    <span class="dot"></span>
+    <span>Protected items require a 20-char code to delete</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

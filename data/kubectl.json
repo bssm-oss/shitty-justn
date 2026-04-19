@@ -1,0 +1,19 @@
+{
+  "category": "kubectl",
+  "display_name": "Kubernetes (kubectl)",
+  "difficulty": "hard",
+  "commands": [
+    { "text": "kubectl get pods -n default", "difficulty": 1, "description": "List pods in namespace" },
+    { "text": "kubectl describe pod my-app-0", "difficulty": 2, "description": "Describe a specific pod" },
+    { "text": "kubectl apply -f deploy.yaml", "difficulty": 1, "description": "Apply manifest file" },
+    { "text": "kubectl delete pod my-app-0", "difficulty": 1, "description": "Delete a specific pod" },
+    { "text": "kubectl logs -f deploy/my-app", "difficulty": 2, "description": "Follow deployment logs" },
+    { "text": "kubectl exec -it my-app-0 -- sh", "difficulty": 2, "description": "Shell into pod" },
+    { "text": "kubectl port-forward svc/api 8080:80", "difficulty": 3, "description": "Forward service port" },
+    { "text": "kubectl rollout restart deploy/api", "difficulty": 2, "description": "Rolling restart deployment" },
+    { "text": "kubectl scale deploy/api --replicas=3", "difficulty": 2, "description": "Scale deployment replicas" },
+    { "text": "kubectl get events --sort-by=.lastTimestamp", "difficulty": 3, "description": "Get sorted cluster events" },
+    { "text": "kubectl top pods --sort-by=memory", "difficulty": 2, "description": "Pod resource usage" },
+    { "text": "kubectl config use-context prod", "difficulty": 2, "description": "Switch kubectl context" }
+  ]
+}

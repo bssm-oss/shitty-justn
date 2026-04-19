@@ -1,0 +1,19 @@
+{
+  "category": "npm",
+  "display_name": "npm / Node.js",
+  "difficulty": "easy",
+  "commands": [
+    { "text": "npm install express", "difficulty": 1, "description": "Install express package" },
+    { "text": "npm run build", "difficulty": 1, "description": "Run build script" },
+    { "text": "npm init -y", "difficulty": 1, "description": "Initialize package.json" },
+    { "text": "npm publish --access public", "difficulty": 2, "description": "Publish public package" },
+    { "text": "npm link ../my-lib", "difficulty": 2, "description": "Symlink local package" },
+    { "text": "npm cache clean --force", "difficulty": 2, "description": "Clear npm cache" },
+    { "text": "npm audit fix --force", "difficulty": 2, "description": "Auto-fix vulnerabilities" },
+    { "text": "npm outdated --long", "difficulty": 1, "description": "Check outdated packages" },
+    { "text": "npx create-next-app@latest", "difficulty": 2, "description": "Create Next.js app" },
+    { "text": "npm install -D typescript @types/node", "difficulty": 2, "description": "Install TS dev deps" },
+    { "text": "npm version patch -m \"v%s\"", "difficulty": 2, "description": "Bump patch version" },
+    { "text": "npm exec -- eslint src/", "difficulty": 2, "description": "Run eslint via npx" }
+  ]
+}

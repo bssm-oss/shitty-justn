@@ -1,0 +1,19 @@
+{
+  "category": "docker",
+  "display_name": "Docker",
+  "difficulty": "medium",
+  "commands": [
+    { "text": "docker build -t myapp .", "difficulty": 1, "description": "Build image with tag" },
+    { "text": "docker run -d -p 8080:80 nginx", "difficulty": 2, "description": "Run nginx in background" },
+    { "text": "docker compose up -d --build", "difficulty": 2, "description": "Compose up with rebuild" },
+    { "text": "docker exec -it web sh", "difficulty": 2, "description": "Shell into container" },
+    { "text": "docker system prune -af", "difficulty": 2, "description": "Remove all unused data" },
+    { "text": "docker logs -f --tail 100 app", "difficulty": 2, "description": "Follow container logs" },
+    { "text": "docker network create mynet", "difficulty": 1, "description": "Create custom network" },
+    { "text": "docker volume ls", "difficulty": 1, "description": "List volumes" },
+    { "text": "docker compose down -v", "difficulty": 2, "description": "Stop and remove volumes" },
+    { "text": "docker image prune --all", "difficulty": 2, "description": "Remove unused images" },
+    { "text": "docker inspect --format '{{.State}}' app", "difficulty": 3, "description": "Inspect container state" },
+    { "text": "docker cp app:/data ./backup", "difficulty": 2, "description": "Copy from container" }
+  ]
+}

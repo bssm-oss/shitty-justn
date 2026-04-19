@@ -1,0 +1,19 @@
+{
+  "category": "linux",
+  "display_name": "Linux Essentials",
+  "difficulty": "medium",
+  "commands": [
+    { "text": "chmod +x script.sh", "difficulty": 1, "description": "Make file executable" },
+    { "text": "find . -name \"*.log\" -delete", "difficulty": 2, "description": "Find and delete log files" },
+    { "text": "grep -rn \"TODO\" src/", "difficulty": 2, "description": "Recursive grep with line numbers" },
+    { "text": "tar -xzf archive.tar.gz", "difficulty": 2, "description": "Extract gzipped tarball" },
+    { "text": "curl -sL https://example.com | jq .", "difficulty": 3, "description": "Fetch JSON and pretty-print" },
+    { "text": "ssh -i key.pem user@host", "difficulty": 2, "description": "SSH with identity file" },
+    { "text": "sed -i 's/old/new/g' file.txt", "difficulty": 2, "description": "In-place find and replace" },
+    { "text": "awk '{print $1, $3}' data.csv", "difficulty": 2, "description": "Print columns 1 and 3" },
+    { "text": "ps aux | grep node", "difficulty": 1, "description": "Find node processes" },
+    { "text": "kill -9 $(lsof -t -i:3000)", "difficulty": 3, "description": "Kill process on port 3000" },
+    { "text": "du -sh * | sort -rh | head -5", "difficulty": 3, "description": "Top 5 largest items" },
+    { "text": "ln -sf /usr/bin/python3 /usr/bin/python", "difficulty": 2, "description": "Create symbolic link" }
+  ]
+}

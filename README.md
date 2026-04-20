@@ -32,5 +32,4 @@ personal junk drawer. things that work, things that might work, things that exis
 
 Apache 2.0.
 
-마음껏 가져다 써. 명시 없이 복사해도 됨. 아이디어만 들고 가도 됨.
-뭔가 만들었으면 보여줘도 되고 안 보여줘도 됨.
+마음껏 사용해주세요. 전공동아리 아이디어로 추천합니다.
